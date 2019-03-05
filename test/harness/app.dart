@@ -1,7 +1,6 @@
-import 'package:energized_id_server/energized_id_server.dart';
+import 'package:energized_id_server/channel.dart';
 import 'package:aqueduct_test/aqueduct_test.dart';
 
-export 'package:energized_id_server/energized_id_server.dart';
 export 'package:aqueduct_test/aqueduct_test.dart';
 export 'package:test/test.dart';
 export 'package:aqueduct/aqueduct.dart';
@@ -21,12 +20,8 @@ export 'package:aqueduct/aqueduct.dart';
 ///
 class Harness extends TestHarness<EnergizedIdServerChannel> {
   @override
-  Future onSetUp() async {
-
-  }
+  Future onSetUp() async {}
 
   @override
-  Future onTearDown() async {
-
-  }
+  Future onTearDown() async {}
 }

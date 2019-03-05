@@ -1,9 +1,12 @@
-import 'package:energized_id_server/energized_id_server.dart';
+import 'dart:io';
+
+import 'package:aqueduct/aqueduct.dart';
+import 'package:energized_id_server/channel.dart';
 
 Future main() async {
   final app = Application<EnergizedIdServerChannel>()
-      ..options.configurationFilePath = "config.yaml"
-      ..options.port = 8888;
+    ..options.configurationFilePath = "config.yaml"
+    ..options.port = 8888;
 
   final count = Platform.numberOfProcessors ~/ 2;
   await app.start(numberOfInstances: count > 0 ? count : 1);
