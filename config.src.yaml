@@ -1,1 +1,8 @@
 fileServeDir: /var/www/html
+
+database:
+  host: localhost
+  port: 5432
+  username: dart
+  password: dart
+  databaseName: energized_db

@@ -2,12 +2,15 @@ import 'dart:io';
 
 import 'package:aqueduct/aqueduct.dart';
 
+import 'controllers/students_controller.dart';
+
 /// This type initializes an application.
 ///
 /// Override methods in this class to set up routes and initialize services like
 /// database connections. See http://aqueduct.io/docs/http/channel/.
 class EnergizedIdServerChannel extends ApplicationChannel {
   IdConfig _config;
+  ManagedContext _context;
 
   /// Initialize services in this method.
   ///
@@ -21,7 +24,16 @@ class EnergizedIdServerChannel extends ApplicationChannel {
         (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
 
     _config = IdConfig(options.configurationFilePath);
-    print(_config.fileServeDir);
+
+    final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
+    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
+        _config.database.username,
+        _config.database.password,
+        _config.database.host,
+        _config.database.port,
+        _config.database.databaseName);
+
+    _context = ManagedContext(dataModel, persistentStore);
   }
 
   /// Construct the request channel.
@@ -40,6 +52,8 @@ class EnergizedIdServerChannel extends ApplicationChannel {
       return Response.ok({"key": "value"});
     });
 
+    router.route("/students/[:id]").link(() => StudentsController(_context));
+
     router.route("/*").link(() => FileController(_config.fileServeDir));
 
     return router;
@@ -50,4 +64,5 @@ class IdConfig extends Configuration {
   IdConfig(String path) : super.fromFile(File(path));
 
   String fileServeDir;
+  DatabaseConfiguration database;
 }
