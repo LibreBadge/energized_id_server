@@ -16,3 +16,4 @@ Dart_Packages.xml
 doc/api/
 *.g.dart
 config.yaml
+database.yaml

@@ -42,5 +42,27 @@ class Migration1 extends Migration {
   Future downgrade() async {}
 
   @override
-  Future seed() async {}
+  Future seed() async {
+    const students = [
+      {
+        "id": 1540120,
+        "firstName": "Kai",
+        "lastName": "Page",
+        "gradeLevel": 11,
+      },
+      {
+        "id": 1659616,
+        "firstName": "Micah",
+        "lastName": "Guttman",
+        "gradeLevel": 9
+      },
+    ];
+
+    for (final student in students) {
+      await store.execute(
+          "INSERT INTO StudentTable (id, firstName, lastName, gradeLevel) "
+          "VALUES (@id, @firstName, @lastName, @gradeLevel);",
+          substitutionValues: student);
+    }
+  }
 }
