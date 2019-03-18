@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:aqueduct/aqueduct.dart';
 
 import 'controllers/students_controller.dart';
+import 'controllers/student_images_controller.dart';
 
 /// This type initializes an application.
 ///
@@ -52,7 +53,12 @@ class EnergizedIdServerChannel extends ApplicationChannel {
       return Response.ok({"key": "value"});
     });
 
-    router.route("/students/[:id]").link(() => StudentsController(_context));
+    router
+        .route("/students/[:id]")
+        .link(() => StudentsController(_context, _config.imageStoreDir));
+    router
+        .route("/students/:id/image")
+        .link(() => StudentImagesController(_config.imageStoreDir));
 
     router.route("/*").link(() => FileController(_config.fileServeDir));
 
@@ -64,5 +70,6 @@ class IdConfig extends Configuration {
   IdConfig(String path) : super.fromFile(File(path));
 
   String fileServeDir;
+  String imageStoreDir;
   DatabaseConfiguration database;
 }

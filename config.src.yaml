@@ -1,4 +1,5 @@
 fileServeDir: /var/www/html
+imageStoreDir: /a/directory/to/store/images/in
 
 database:
   host: localhost

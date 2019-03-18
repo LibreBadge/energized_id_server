@@ -1,21 +1,8 @@
 # energized_id_server
 
-## Running the Application Locally
+## Setup Requirements
 
-Run `aqueduct serve` from this directory to run the application. For running within an IDE, run `bin/main.dart`. By default, a configuration file named `config.yaml` will be used.
+You need a PostgreSQL server with a database for the application to connect to.
 
-To generate a SwaggerUI client, run `aqueduct document client`.
+In your imageStoreDir, under the students subdirectory, you need a placeholder.jpg.
 
-## Running Application Tests
-
-To run all tests for this application, run the following in this directory:
-
-```
-pub run test
-```
-
-The default configuration file used when testing is `config.src.yaml`. This file should be checked into version control. It also the template for configuration files used in deployment.
-
-## Deploying an Application
-
-See the documentation for [Deployment](https://aqueduct.io/docs/deploy/).
