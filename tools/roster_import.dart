@@ -20,8 +20,7 @@ void main() async {
     print("Run roster_photo_rename.dart first.");
   }
 
-  await Future.wait(
-      (await getStudents()).where((s) => s.gradeLevel < 12).map((s) async {
+  for (var s in (await getStudents()).where((s) => s.gradeLevel < 12)) {
     await _client.put(
       "$origin/students/${s.id}",
       body: jsonEncode((s..gradeLevel += 1).toJson()),
@@ -36,7 +35,7 @@ void main() async {
         headers: {"Content-Type": "image/jpeg"},
       );
     }
-  }));
+  }
   print("Done");
   _client.close();
 }
