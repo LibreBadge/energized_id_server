@@ -155,6 +155,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.6"
+  csv:
+    dependency: "direct dev"
+    description:
+      name: csv
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.3"
   dart_style:
     dependency: transitive
     description:
@@ -207,7 +214,7 @@ packages:
     source: hosted
     version: "0.13.4+1"
   http:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: http
       url: "https://pub.dartlang.org"

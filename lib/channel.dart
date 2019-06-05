@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:aqueduct/aqueduct.dart';
 
-import 'controllers/students_controller.dart';
 import 'controllers/student_images_controller.dart';
+import 'controllers/students_controller.dart';
 
 /// This type initializes an application.
 ///
